@@ -1,0 +1,9 @@
+C:\Users\Cyberadmin\Desktop\Chap 8.2 Tutorials\Tutorial 8-2\Telephone Format\bin\Debug\Telephone Format.exe.config
+C:\Users\Cyberadmin\Desktop\Chap 8.2 Tutorials\Tutorial 8-2\Telephone Format\bin\Debug\Telephone Format.exe
+C:\Users\Cyberadmin\Desktop\Chap 8.2 Tutorials\Tutorial 8-2\Telephone Format\bin\Debug\Telephone Format.pdb
+C:\Users\Cyberadmin\Desktop\Chap 8.2 Tutorials\Tutorial 8-2\Telephone Format\obj\Debug\Telephone_Format.Properties.Resources.resources
+C:\Users\Cyberadmin\Desktop\Chap 8.2 Tutorials\Tutorial 8-2\Telephone Format\obj\Debug\Telephone Format.csproj.GenerateResource.Cache
+C:\Users\Cyberadmin\Desktop\Chap 8.2 Tutorials\Tutorial 8-2\Telephone Format\obj\Debug\Telephone Format.csproj.CoreCompileInputs.cache
+C:\Users\Cyberadmin\Desktop\Chap 8.2 Tutorials\Tutorial 8-2\Telephone Format\obj\Debug\Telephone Format.exe
+C:\Users\Cyberadmin\Desktop\Chap 8.2 Tutorials\Tutorial 8-2\Telephone Format\obj\Debug\Telephone Format.pdb
+C:\Users\Cyberadmin\Desktop\Chap 8.2 Tutorials\Tutorial 8-2\Telephone Format\obj\Debug\Telephone_Format.Form1.resources

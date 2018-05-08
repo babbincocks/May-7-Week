@@ -1,0 +1,10 @@
+C:\Users\Cyberadmin\Desktop\Chap 8.2 Tutorials\Tutorial 8-3\Telephone Unformat\bin\Debug\Telephone Unformat.exe.config
+C:\Users\Cyberadmin\Desktop\Chap 8.2 Tutorials\Tutorial 8-3\Telephone Unformat\bin\Debug\Telephone Unformat.exe
+C:\Users\Cyberadmin\Desktop\Chap 8.2 Tutorials\Tutorial 8-3\Telephone Unformat\bin\Debug\Telephone Unformat.pdb
+C:\Users\Cyberadmin\Desktop\Chap 8.2 Tutorials\Tutorial 8-3\Telephone Unformat\obj\Debug\Telephone Unformat.csprojResolveAssemblyReference.cache
+C:\Users\Cyberadmin\Desktop\Chap 8.2 Tutorials\Tutorial 8-3\Telephone Unformat\obj\Debug\Telephone_Unformat.Form1.resources
+C:\Users\Cyberadmin\Desktop\Chap 8.2 Tutorials\Tutorial 8-3\Telephone Unformat\obj\Debug\Telephone_Unformat.Properties.Resources.resources
+C:\Users\Cyberadmin\Desktop\Chap 8.2 Tutorials\Tutorial 8-3\Telephone Unformat\obj\Debug\Telephone Unformat.csproj.GenerateResource.Cache
+C:\Users\Cyberadmin\Desktop\Chap 8.2 Tutorials\Tutorial 8-3\Telephone Unformat\obj\Debug\Telephone Unformat.csproj.CoreCompileInputs.cache
+C:\Users\Cyberadmin\Desktop\Chap 8.2 Tutorials\Tutorial 8-3\Telephone Unformat\obj\Debug\Telephone Unformat.exe
+C:\Users\Cyberadmin\Desktop\Chap 8.2 Tutorials\Tutorial 8-3\Telephone Unformat\obj\Debug\Telephone Unformat.pdb
