@@ -51,85 +51,109 @@ TABLOCK
 
 GO
 CREATE FUNCTION [dbo].[Standardized_Dates]
-(@inputDate AS VARCHAR(255)) 
-RETURNS date
+(@inputDate AS VARCHAR(50)) 
+RETURNS DATE
 AS
 BEGIN
 
- DECLARE @result date = null;
- DECLARE @reverseIn varchar(255) = '';
- DECLARE @yearLength int = 0;
+ DECLARE @result DATE = NULL;
+ DECLARE @yearLength INT = 0;
  DECLARE @yearValue INT = 0;
+ --DECLARE @proper BIT = 0;
+ 
  
  IF LEN(@inputDate) > 0
  BEGIN
 
-	 -- Trim leading spaces
-	 SET @inputDate = LTRIM(RTRIM(@inputDate))
+	--IF TRY_CONVERT(DATE, @inputDate, 101) IS NOT NULL
+	--BEGIN
+	--SET @proper = 1;
+	--END
 
-	 -- Trim starting 0 if there is one.
-	 IF LEFT(@inputDate, 1) = '0' 
+	--IF @proper = 0
+	--BEGIN
+		 --Get rid of any leading spaces
+		 SET @inputDate = LTRIM(RTRIM(@inputDate))
+
+		 --If there's a leading zero, this gets rid of it.
+		 IF LEFT(@inputDate, 1) = '0' 
+			 BEGIN
+			 SET @inputDate = RIGHT(@inputDate, LEN(@inputDate) - 1); 
+			 END
+
+
+			 --Hyphens and periods show up as separators, so it's better to have them be one uniform character.
+		 SET @inputDate = REPLACE(@inputDate, ' ', '/');
+		 SET @inputDate = REPLACE(@inputDate, '-', '/');
+		 SET @inputDate = REPLACE(@inputDate, '.', '/');
+
+
+			WHILE CHARINDEX('//', @inputDate) != 0
+				BEGIN
+				SET @inputDate = REPLACE(@inputDate, '//', '/')
+				END
+
+
+				--The date is reversed so as to more easily retrieve the physical length of the year.
+		 DECLARE @reverseIn VARCHAR(255) = REVERSE(@inputDate); 
+		 SET @yearLength = CHARINDEX('/', @reverseIn) - 1;
+
+
+		 SET @yearValue = CONVERT(INT, REVERSE(LEFT(@reverseIn, 2)));
+
+		 --If the year format is (most likely) two digits, this ensues.
+		 IF @yearLength > 0 AND @yearLength < 4
 		 BEGIN
-		 SET @inputDate = RIGHT(@inputDate, LEN(@inputDate) - 1); 
+				--If the last two digits of the inputted year is less than the last two digits of the current year, it's assumed to be a date
+				--from this century; otherwise, it's formatted to be of last century.
+		   IF @yearValue < 10
+			   BEGIN
+				 SET @inputDate = CONCAT(LEFT(@inputDate, LEN(@inputDate) - (@yearLength)), '200', @yearValue);
+				 END
+		   ELSE IF @yearValue >=  YEAR(GETDATE()) % 100
+			   BEGIN
+				 SET @inputDate = CONCAT(LEFT(@inputDate, LEN(@inputDate) - (@yearLength)), '19', @yearValue); 
+				 END
+		   ELSE    
+			   BEGIN
+				 SET @inputDate = CONCAT(LEFT(@inputDate, LEN(@inputDate) - (@yearLength)), '20', @yearValue);
+			   END
 		 END
-
-	 -- Replace dashes and periods
-
-	 SET @inputDate = REPLACE(@inputDate, '-', '/');
-	 SET @inputDate = REPLACE(@inputDate, '.', '/');
-
-	 -- Isolate and process year value
-	 -- First, get year string by reversing string and finding first (last) separator.
-	 SET @reverseIn = REVERSE(@inputDate);
-	 SET @yearLength = CHARINDEX('/', @reverseIn) - 1;
-
-	 -- Get the year value from the last two digits ...
-	 SET @yearValue = CONVERT(INT, REVERSE(LEFT(@reverseIn, 2)));
-
-	 -- If the year value is greater than or equal to the current year, assume last century, else this century.
-	 IF @yearLength > 0 AND @yearLength < 4
-	 BEGIN
-	   IF @yearValue < 10
-		   BEGIN
-			 SET @inputDate = CONCAT(LEFT(@inputDate, LEN(@inputDate) - (@yearLength)), '200', @yearValue);
-			 END
-	   ELSE IF @yearValue >=  YEAR(GETDATE()) % 100
-		   BEGIN
-			 SET @inputDate = CONCAT(LEFT(@inputDate, LEN(@inputDate) - (@yearLength)), '19', @yearValue); 
-			 END
-	   ELSE    
-		   BEGIN
-			 SET @inputDate = CONCAT(LEFT(@inputDate, LEN(@inputDate) - (@yearLength)), '20', @yearValue);
-		   END
-	 END
 
 	 
  
-	 -- Remove extra zeroes
+		 -- Remove extra zeroes
  
-	 SET @inputDate = REPLACE(@inputDate, '/0', '/');
+		 SET @inputDate = REPLACE(@inputDate, '/0', '/');
 
-	 --@f retrieves the first number in the date string , while @s retrieves the second number.
-	 DECLARE @f VARCHAR(5) = SUBSTRING(@inputDate, 1, CHARINDEX('/', @inputDate, 0) - 1)
-	 DECLARE @s VARCHAR(5) = SUBSTRING(@inputDate, CHARINDEX('/', @inputDate, 0) + 1, 
-	 (CHARINDEX('/', @inputDate, CHARINDEX('/', @inputDate, CHARINDEX('/', @inputDate, 0) + 1)) - CHARINDEX('/', @inputDate, 0)  - 1))
+		 --@f retrieves the first number in the date string , while @s retrieves the second number.
+		 DECLARE @f VARCHAR(5) = SUBSTRING(@inputDate, 1, CHARINDEX('/', @inputDate, 0) - 1)
+		 DECLARE @s VARCHAR(5) = SUBSTRING(@inputDate, CHARINDEX('/', @inputDate, 0) + 1, 
+							(CHARINDEX('/', @inputDate, CHARINDEX('/', @inputDate, CHARINDEX('/', @inputDate, 0) + 1)) - CHARINDEX('/', @inputDate, 0)  - 1))
 		
-		--Check if both values retrieved are numeric
-	 IF ISNUMERIC(@s) = 1 AND ISNUMERIC(@f) = 1
-		BEGIN
+			--Checks if both values retrieved are numeric
+		 IF ISNUMERIC(@s) = 1 AND ISNUMERIC(@f) = 1
+			BEGIN
 
-		--If the format is like this: DD/MM/YYYY and is solely numeric...
-	 IF @f > 12 AND @s <= 12
-	 BEGIN
-		--...the DD and the MM are switched around.
-			SET @inputDate = STUFF(@inputDate, 1, 2, @s)
-			SET @inputDate = STUFF(@inputDate, CHARINDEX('/', @inputDate, 0) + 1, LEN(@s), @f)
-	 END
+			--If the format is like this: DD/MM/YYYY and is solely numeric...
+		 IF @f > 12 AND @s <= 12
+		 BEGIN
+			--...the DD and the MM are switched around.
+				SET @inputDate = STUFF(@inputDate, 1, 2, @s)
+				SET @inputDate = STUFF(@inputDate, CHARINDEX('/', @inputDate, 0) + 1, LEN(@s), @f)
+		 END
 
-	 END
+		 END
+		 
+	--END
 
-	--Numeric month name (0 - 12) / Day of month as numeric (0 - 31) / Year as 4 digit numeric
+	--At this point, the date should be in a suitable format, and it is then converted to a date data type, and put into the result variable.
 	 SET @result = CONVERT(DATE, @inputDate, 101);
+
+	 --IF DATEPART(YEAR, @result) > GETDATE()
+	 --BEGIN
+	 --SET @result = DATEADD(YEAR, -100, @result)
+	 --END
  
 
 END
@@ -140,9 +164,10 @@ END
 
 GO
 
-
+--SELECT * FROM ZBabcock_MemberRealTable WHERE BirthDate BETWEEN ('1-1-1920', '12-31-1998')  OR ISDATE(JoinDate) = 0
 
 INSERT INTO ZBabcock_MemberRealTable
 SELECT FirstName, LastName, dbo.Standardized_Dates(BirthDate), City, [State], dbo.Standardized_Dates(JoinDate)
 FROM ZBabcock_MemberTestTable
+
 
