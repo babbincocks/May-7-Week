@@ -29,14 +29,15 @@
         private void InitializeComponent()
         {
             this.btnConvert = new System.Windows.Forms.Button();
-            this.txtResult = new System.Windows.Forms.TextBox();
+            this.txtInput = new System.Windows.Forms.TextBox();
             this.btnFileLocation = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtOutput = new System.Windows.Forms.TextBox();
             this.btnOutput = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnConvert
             // 
+            this.btnConvert.Enabled = false;
             this.btnConvert.Location = new System.Drawing.Point(167, 215);
             this.btnConvert.Name = "btnConvert";
             this.btnConvert.Size = new System.Drawing.Size(99, 22);
@@ -45,12 +46,12 @@
             this.btnConvert.UseVisualStyleBackColor = true;
             this.btnConvert.Click += new System.EventHandler(this.btnConvert_Click);
             // 
-            // txtResult
+            // txtInput
             // 
-            this.txtResult.Location = new System.Drawing.Point(12, 125);
-            this.txtResult.Name = "txtResult";
-            this.txtResult.Size = new System.Drawing.Size(135, 20);
-            this.txtResult.TabIndex = 1;
+            this.txtInput.Location = new System.Drawing.Point(12, 125);
+            this.txtInput.Name = "txtInput";
+            this.txtInput.Size = new System.Drawing.Size(135, 20);
+            this.txtInput.TabIndex = 1;
             // 
             // btnFileLocation
             // 
@@ -60,22 +61,25 @@
             this.btnFileLocation.TabIndex = 2;
             this.btnFileLocation.Text = "Input File";
             this.btnFileLocation.UseVisualStyleBackColor = true;
+            this.btnFileLocation.Click += new System.EventHandler(this.btnFileLocation_Click);
             // 
-            // textBox1
+            // txtOutput
             // 
-            this.textBox1.Location = new System.Drawing.Point(305, 125);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(135, 20);
-            this.textBox1.TabIndex = 3;
+            this.txtOutput.Location = new System.Drawing.Point(305, 125);
+            this.txtOutput.Name = "txtOutput";
+            this.txtOutput.Size = new System.Drawing.Size(135, 20);
+            this.txtOutput.TabIndex = 3;
             // 
             // btnOutput
             // 
+            this.btnOutput.Enabled = false;
             this.btnOutput.Location = new System.Drawing.Point(349, 151);
             this.btnOutput.Name = "btnOutput";
             this.btnOutput.Size = new System.Drawing.Size(91, 23);
             this.btnOutput.TabIndex = 4;
             this.btnOutput.Text = "Output Location";
             this.btnOutput.UseVisualStyleBackColor = true;
+            this.btnOutput.Click += new System.EventHandler(this.btnOutput_Click);
             // 
             // Form1
             // 
@@ -83,9 +87,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(452, 273);
             this.Controls.Add(this.btnOutput);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtOutput);
             this.Controls.Add(this.btnFileLocation);
-            this.Controls.Add(this.txtResult);
+            this.Controls.Add(this.txtInput);
             this.Controls.Add(this.btnConvert);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -97,9 +101,9 @@
         #endregion
 
         private System.Windows.Forms.Button btnConvert;
-        private System.Windows.Forms.TextBox txtResult;
+        private System.Windows.Forms.TextBox txtInput;
         private System.Windows.Forms.Button btnFileLocation;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtOutput;
         private System.Windows.Forms.Button btnOutput;
     }
 }

@@ -164,7 +164,7 @@ END
 
 GO
 
---SELECT * FROM ZBabcock_MemberRealTable WHERE BirthDate BETWEEN ('1-1-1920', '12-31-1998')  OR ISDATE(JoinDate) = 0
+--SELECT * FROM ZBabcock_MemberRealTable WHERE BirthDate BETWEEN '1-1-1920' AND '12-31-1998' AND JoinDate > '01-01-2000'
 
 INSERT INTO ZBabcock_MemberRealTable
 SELECT FirstName, LastName, dbo.Standardized_Dates(BirthDate), City, [State], dbo.Standardized_Dates(JoinDate)
