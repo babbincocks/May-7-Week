@@ -37,6 +37,7 @@
             // 
             // btnConvert
             // 
+            this.btnConvert.Enabled = false;
             this.btnConvert.Location = new System.Drawing.Point(167, 215);
             this.btnConvert.Name = "btnConvert";
             this.btnConvert.Size = new System.Drawing.Size(99, 22);
@@ -90,7 +91,7 @@
             this.Controls.Add(this.txtInput);
             this.Controls.Add(this.btnConvert);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Date Converter";
             this.ResumeLayout(false);
             this.PerformLayout();
 
