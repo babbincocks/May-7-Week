@@ -27,8 +27,8 @@ namespace DateAlgorithmAdaptation
 
         private void btnConvert_Click(object sender, EventArgs e)
         {
-            
-            
+
+
 
 
             if (fileName != null && saveLocate != null)
@@ -36,27 +36,40 @@ namespace DateAlgorithmAdaptation
                 try
                 {
                     newStream = File.OpenText(fileName);
-                    string row = "";
+                    List<string> results = new List<string>();
                     while (!newStream.EndOfStream)
                     {
-                        row = newStream.ReadLine();
+                        string row = newStream.ReadLine();
 
                         string[] split = row.Split(',');
 
                         split[2] = DateConversion.StandardizeDates(split[2]).ToString();
                         split[5] = DateConversion.StandardizeDates(split[5]).ToString();
 
+                        row = split[0] + "," + split[1] + "," + split[2] + "," + split[3] + "," + split[4] + "," + split[5];
+
+                        results.Add(row);
+
 
                     }
 
+                    using (location = new StreamWriter(saveLocate, false))
+                    {
+                        foreach (string result in results)
+                        {
+                            location.Write(result + Environment.NewLine);
+                            
+                        }
+                        location.Close();
+                    }
 
-                    location = new StreamWriter(saveLocate);
 
+                    MessageBox.Show("Conversion finished.");
 
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("File not found.");
+                    MessageBox.Show(ex.Message);
                 }
             }
         }
@@ -87,9 +100,9 @@ namespace DateAlgorithmAdaptation
             saveFile.Filter = ".csv Files (*.csv)|*.csv|.txt Files (*.txt)|*.txt|All Files (*.*)|*.*";
             saveFile.RestoreDirectory = true;
 
-            if(saveFile.ShowDialog() == DialogResult.OK)
+            if (saveFile.ShowDialog() == DialogResult.OK)
             {
-                saveLocate =  saveFile.FileName;
+                saveLocate = saveFile.FileName;
                 txtOutput.Text = saveLocate;
                 btnConvert.Enabled = true;
             }

@@ -35,16 +35,16 @@ City VARCHAR(50),
 JoinDate DATE
 )
 
-BULK INSERT ZBabcock_MemberTestTable
-FROM 'C:\Users\Cyberadmin\Downloads\MemberSort.csv'
-WITH
-(
-FIRSTROW = 1, -- second row if header row in file
-FIELDTERMINATOR = ',',  --CSV field delimiter
-ROWTERMINATOR = '\n',   --Use to shift the control to next row
-ERRORFILE = 'C:\Users\Cyberadmin\Downloads\memberserr.csv',
-TABLOCK
-)
+--BULK INSERT ZBabcock_MemberTestTable
+--FROM 'C:\Users\Cyberadmin\Downloads\MemberSort.csv'
+--WITH
+--(
+--FIRSTROW = 1, -- second row if header row in file
+--FIELDTERMINATOR = ',',  --CSV field delimiter
+--ROWTERMINATOR = '\n',   --Use to shift the control to next row
+--ERRORFILE = 'C:\Users\Cyberadmin\Downloads\memberserr.csv',
+--TABLOCK
+--)
 
 
 
@@ -128,8 +128,7 @@ BEGIN
 
 		 --@f retrieves the first number in the date string , while @s retrieves the second number.
 		 DECLARE @f VARCHAR(5) = SUBSTRING(@inputDate, 1, CHARINDEX('/', @inputDate, 0) - 1)
-		 DECLARE @s VARCHAR(5) = SUBSTRING(@inputDate, CHARINDEX('/', @inputDate, 0) + 1, 
-							(CHARINDEX('/', @inputDate, CHARINDEX('/', @inputDate, CHARINDEX('/', @inputDate, 0) + 1)) - CHARINDEX('/', @inputDate, 0)  - 1))
+		 DECLARE @s VARCHAR(5) = SUBSTRING(@inputDate, CHARINDEX('/', @inputDate, 0) + 1, (CHARINDEX('/', @inputDate, CHARINDEX('/', @inputDate, CHARINDEX('/', @inputDate, 0) + 1)) - CHARINDEX('/', @inputDate, 0)  - 1))
 		
 			--Checks if both values retrieved are numeric
 		 IF ISNUMERIC(@s) = 1 AND ISNUMERIC(@f) = 1
@@ -166,8 +165,8 @@ GO
 
 --SELECT * FROM ZBabcock_MemberRealTable WHERE BirthDate BETWEEN '1-1-1920' AND '12-31-1998' AND JoinDate > '01-01-2000'
 
-INSERT INTO ZBabcock_MemberRealTable
-SELECT FirstName, LastName, dbo.Standardized_Dates(BirthDate), City, [State], dbo.Standardized_Dates(JoinDate)
-FROM ZBabcock_MemberTestTable
+--INSERT INTO ZBabcock_MemberRealTable
+--SELECT FirstName, LastName, dbo.Standardized_Dates(BirthDate), City, [State], dbo.Standardized_Dates(JoinDate)
+--FROM ZBabcock_MemberTestTable
 
-
+SELECT dbo.Standardized_Dates('')

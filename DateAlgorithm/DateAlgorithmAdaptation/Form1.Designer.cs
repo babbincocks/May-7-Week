@@ -37,7 +37,6 @@
             // 
             // btnConvert
             // 
-            this.btnConvert.Enabled = false;
             this.btnConvert.Location = new System.Drawing.Point(167, 215);
             this.btnConvert.Name = "btnConvert";
             this.btnConvert.Size = new System.Drawing.Size(99, 22);
@@ -72,7 +71,6 @@
             // 
             // btnOutput
             // 
-            this.btnOutput.Enabled = false;
             this.btnOutput.Location = new System.Drawing.Point(349, 151);
             this.btnOutput.Name = "btnOutput";
             this.btnOutput.Size = new System.Drawing.Size(91, 23);
