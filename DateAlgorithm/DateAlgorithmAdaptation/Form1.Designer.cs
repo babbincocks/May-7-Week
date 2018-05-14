@@ -38,7 +38,7 @@
             // btnConvert
             // 
             this.btnConvert.Enabled = false;
-            this.btnConvert.Location = new System.Drawing.Point(167, 215);
+            this.btnConvert.Location = new System.Drawing.Point(89, 226);
             this.btnConvert.Name = "btnConvert";
             this.btnConvert.Size = new System.Drawing.Size(99, 22);
             this.btnConvert.TabIndex = 0;
@@ -48,14 +48,14 @@
             // 
             // txtInput
             // 
-            this.txtInput.Location = new System.Drawing.Point(12, 125);
+            this.txtInput.Location = new System.Drawing.Point(12, 56);
             this.txtInput.Name = "txtInput";
-            this.txtInput.Size = new System.Drawing.Size(135, 20);
+            this.txtInput.Size = new System.Drawing.Size(230, 20);
             this.txtInput.TabIndex = 1;
             // 
             // btnFileLocation
             // 
-            this.btnFileLocation.Location = new System.Drawing.Point(12, 151);
+            this.btnFileLocation.Location = new System.Drawing.Point(12, 82);
             this.btnFileLocation.Name = "btnFileLocation";
             this.btnFileLocation.Size = new System.Drawing.Size(91, 23);
             this.btnFileLocation.TabIndex = 2;
@@ -65,14 +65,14 @@
             // 
             // txtOutput
             // 
-            this.txtOutput.Location = new System.Drawing.Point(305, 125);
+            this.txtOutput.Location = new System.Drawing.Point(12, 140);
             this.txtOutput.Name = "txtOutput";
-            this.txtOutput.Size = new System.Drawing.Size(135, 20);
+            this.txtOutput.Size = new System.Drawing.Size(230, 20);
             this.txtOutput.TabIndex = 3;
             // 
             // btnOutput
             // 
-            this.btnOutput.Location = new System.Drawing.Point(349, 151);
+            this.btnOutput.Location = new System.Drawing.Point(12, 166);
             this.btnOutput.Name = "btnOutput";
             this.btnOutput.Size = new System.Drawing.Size(91, 23);
             this.btnOutput.TabIndex = 4;
@@ -84,7 +84,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(452, 273);
+            this.ClientSize = new System.Drawing.Size(313, 273);
             this.Controls.Add(this.btnOutput);
             this.Controls.Add(this.txtOutput);
             this.Controls.Add(this.btnFileLocation);

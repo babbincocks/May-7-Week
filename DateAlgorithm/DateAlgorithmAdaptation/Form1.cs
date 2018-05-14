@@ -44,16 +44,28 @@ namespace DateAlgorithmAdaptation
 
 
                     while (!newStream.EndOfStream)
-                    {   //The entire row is put into a string, and then is split into a series of strings.
+                    {   //The entire row is put into a string, and then is split into a series of strings. A variable is also declared that
+                        //keeps track of what cell an item is in.
                         string row = newStream.ReadLine();
                         string[] split = row.Split(',');
+                        int c = 0;
+
+                        foreach (string cell in split)
+                        {
+                            //Check if an element in the array created before has any digits. If so, it gets put through the conversion algorithm.
+                            if(cell.Any(char.IsDigit))
+                            {
+                                split[c] = DateConversion.StandardizeDates(split[c]);
+                                row = split[0] + "," + split[1] + "," + split[2] + "," + split[3] + "," + split[4] + "," + split[5];
+                            }
+                            c++;
+                        }
 
                         //The third and sixth cell is put through the conversion algorithm.
-                        split[2] = DateConversion.StandardizeDates(split[2]);
-                        split[5] = DateConversion.StandardizeDates(split[5]);
+                        //split[2] = DateConversion.StandardizeDates(split[2]);
+                        //split[5] = DateConversion.StandardizeDates(split[5]);
 
                         //The row is put back together with the new dates, and is added to the array.
-                        row = split[0] + "," + split[1] + "," + split[2] + "," + split[3] + "," + split[4] + "," + split[5];
                         results.Add(row);
 
 
